@@ -1,0 +1,17 @@
+version: '2'
+services:
+  neo4j-database:
+    image: neo4j:3.0
+    container_name: neo4j-database
+    ports:
+      - "7474:7474"
+  bus-challenge:
+    build: .
+    container_name: bus-challenge
+    image: bus-challenge:latest
+    ports:
+      - "8080:8080"
+    links:
+      - neo4j-database
+    depends_on:
+      - neo4j-database

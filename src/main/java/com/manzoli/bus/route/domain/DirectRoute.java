@@ -1,9 +1,9 @@
 package com.manzoli.bus.route.domain;
 
-import org.springframework.data.neo4j.annotation.EndNode;
-import org.springframework.data.neo4j.annotation.Fetch;
-import org.springframework.data.neo4j.annotation.RelationshipEntity;
-import org.springframework.data.neo4j.annotation.StartNode;
+import org.neo4j.ogm.annotation.EndNode;
+import org.neo4j.ogm.annotation.GraphId;
+import org.neo4j.ogm.annotation.RelationshipEntity;
+import org.neo4j.ogm.annotation.StartNode;
 
 /**
  * 
@@ -11,16 +11,27 @@ import org.springframework.data.neo4j.annotation.StartNode;
  * @since 1.0-SNAPSHOT Relationship Entity for the nodes Route and Station
  *
  */
-@RelationshipEntity(type = "DIRECT")
+@RelationshipEntity(type = DirectRoute.TYPE)
 public class DirectRoute {
+	
+	public final static String TYPE = "GOES_TO";
+	
+	@GraphId
+	private Long id;
 
 	@StartNode
-	@Fetch
 	private Route from;
 
 	@EndNode
-	@Fetch
 	private Station to;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public Route getFrom() {
 		return from;
@@ -43,6 +54,7 @@ public class DirectRoute {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((from == null) ? 0 : from.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((to == null) ? 0 : to.hashCode());
 		return result;
 	}
@@ -61,6 +73,11 @@ public class DirectRoute {
 				return false;
 		} else if (!from.equals(other.from))
 			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
 		if (to == null) {
 			if (other.to != null)
 				return false;
@@ -71,6 +88,8 @@ public class DirectRoute {
 
 	@Override
 	public String toString() {
-		return "DirectRoute [from=" + from + ", to=" + to + "]";
+		return "DirectRoute [id=" + id + ", from=" + from + ", to=" + to + "]";
 	}
+
+	
 }

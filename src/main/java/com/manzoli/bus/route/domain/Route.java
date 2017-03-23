@@ -2,11 +2,9 @@ package com.manzoli.bus.route.domain;
 
 import java.util.Set;
 
-import org.neo4j.graphdb.Direction;
-import org.springframework.data.neo4j.annotation.Fetch;
-import org.springframework.data.neo4j.annotation.GraphId;
-import org.springframework.data.neo4j.annotation.NodeEntity;
-import org.springframework.data.neo4j.annotation.RelatedToVia;
+import org.neo4j.ogm.annotation.GraphId;
+import org.neo4j.ogm.annotation.NodeEntity;
+import org.neo4j.ogm.annotation.Relationship;
 
 /**
  * 
@@ -20,10 +18,9 @@ public class Route {
 
 	@GraphId
 	private Long id;
-
-	@Fetch
-	@RelatedToVia(type = "DIRECT", direction = Direction.BOTH)
-	private Set<DirectRoute> directRouteStations;
+	
+	@Relationship(type = DirectRoute.TYPE, direction="BOTH")
+	private Set<DirectRoute> stations;
 
 	public Long getId() {
 		return id;
@@ -33,20 +30,20 @@ public class Route {
 		this.id = id;
 	}
 
-	public Set<DirectRoute> getDirectRouteStations() {
-		return directRouteStations;
+	public Set<DirectRoute> getStations() {
+		return stations;
 	}
 
-	public void setDirectRouteStations(Set<DirectRoute> directRouteStations) {
-		this.directRouteStations = directRouteStations;
+	public void setStations(Set<DirectRoute> stations) {
+		this.stations = stations;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((directRouteStations == null) ? 0 : directRouteStations.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((stations == null) ? 0 : stations.hashCode());
 		return result;
 	}
 
@@ -59,21 +56,22 @@ public class Route {
 		if (getClass() != obj.getClass())
 			return false;
 		Route other = (Route) obj;
-		if (directRouteStations == null) {
-			if (other.directRouteStations != null)
-				return false;
-		} else if (!directRouteStations.equals(other.directRouteStations))
-			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
+			return false;
+		if (stations == null) {
+			if (other.stations != null)
+				return false;
+		} else if (!stations.equals(other.stations))
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Route [id=" + id + ", directRouteStations=" + directRouteStations + "]";
+		return "Route [id=" + id + ", stations=" + stations + "]";
 	}
+
 }
