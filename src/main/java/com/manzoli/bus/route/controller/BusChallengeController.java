@@ -55,6 +55,9 @@ public class BusChallengeController {
 		return ResponseEntity.status(HttpStatus.OK).body(directRouteResult);
 	}
 
+	/**
+	 * @return the build information about the project
+	 */
 	@GetMapping(path = "/version", produces = "application/json")
 	@ResponseBody
 	@ApiOperation(value = "Return the version of the project.", response = ApplicationVersion.class, httpMethod = "GET")

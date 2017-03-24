@@ -8,7 +8,8 @@ import org.neo4j.ogm.annotation.StartNode;
 /**
  * 
  * @author jmanzol
- * @since 1.0-SNAPSHOT Relationship Entity for the nodes Route and Station
+ * @since 1.0-SNAPSHOT 
+ * Relationship Entity for the nodes Route and Station
  *
  */
 @RelationshipEntity(type = DirectRoute.TYPE)
