@@ -15,4 +15,6 @@ import com.manzoli.bus.route.domain.Station;
 @Repository
 public interface StationRepository extends GraphRepository<Station>{
 
+	public Station findById(Long id);
+
 }

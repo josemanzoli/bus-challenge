@@ -1,9 +1,12 @@
 package com.manzoli.bus.route.repository;
 
+import java.util.Set;
+
 import org.springframework.data.neo4j.repository.GraphRepository;
 import org.springframework.stereotype.Repository;
 
 import com.manzoli.bus.route.domain.DirectRoute;
+import com.manzoli.bus.route.domain.Station;
 
 /**
  * 
@@ -15,6 +18,5 @@ import com.manzoli.bus.route.domain.DirectRoute;
  */
 @Repository
 public interface DirectRouteRepository extends GraphRepository<DirectRoute>{
-
-
+	public Set<DirectRoute> findAllByTo(Station to);
 }
