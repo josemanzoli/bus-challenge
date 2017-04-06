@@ -19,8 +19,17 @@ public class Route {
 	@GraphId
 	private Long id;
 	
-	@Relationship(type = DirectRoute.TYPE, direction="BOTH")
+	@Relationship(type = DirectRoute.TYPE, direction=Relationship.INCOMING)
 	private Set<DirectRoute> stations;
+	
+	public Route(){
+		
+	}
+	
+	public Route(Long id, Set<DirectRoute> stations){
+		this.id = id;
+		this.stations = stations;
+	}
 
 	public Long getId() {
 		return id;

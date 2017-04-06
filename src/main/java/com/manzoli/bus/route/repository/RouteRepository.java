@@ -15,5 +15,6 @@ import com.manzoli.bus.route.domain.Route;
  */
 @Repository
 public interface RouteRepository extends GraphRepository<Route> {
-
+	
+	public Route findById(Long id);
 }

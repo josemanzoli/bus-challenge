@@ -15,6 +15,14 @@ public class Station {
 
 	@GraphId 
 	private Long id;
+	
+	public Station(){
+		
+	}
+	
+	public Station(Long id){
+		this.id = id;
+	}
 
 	public Long getId() {
 		return id;
