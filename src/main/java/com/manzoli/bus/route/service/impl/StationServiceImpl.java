@@ -15,6 +15,7 @@ public class StationServiceImpl implements StationService {
 	@Autowired
 	private StationRepository stationRepository;
 	
+	@Override
 	@Transactional
 	public Station saveStation(Long id){
 		Station station = stationRepository.findById(id);
@@ -24,11 +25,13 @@ public class StationServiceImpl implements StationService {
 		return stationRepository.save(new Station(id));
 	}
 	
+	@Override
 	@Transactional
 	public Station saveStation(Station station){
 		return stationRepository.save(station);
 	}
 	
+	@Override
 	public Station findById(Long id){
 		return stationRepository.findById(id);
 	}

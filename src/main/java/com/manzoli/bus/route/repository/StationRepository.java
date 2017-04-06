@@ -8,12 +8,12 @@ import com.manzoli.bus.route.domain.Station;
 /**
  * 
  * @author jmanzol
- * @since 1.0-SNAPSHOT 
- * Basic repository for the Station entity
+ * @since 1.0-SNAPSHOT Basic repository for the Station entity
  *
  */
 @Repository
-public interface StationRepository extends GraphRepository<Station>{
-	
+public interface StationRepository extends GraphRepository<Station> {
+
 	public Station findById(Long id);
+
 }

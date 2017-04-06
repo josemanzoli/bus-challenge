@@ -12,17 +12,16 @@ import com.manzoli.bus.route.domain.Station;
 /**
  * 
  * @author jmanzol
- * @since 1.0-SNAPSHOT 
- * Repository for DirectRoute entity that will implement the methods to find 
- * the relationship between Route and Station
+ * @since 1.0-SNAPSHOT Repository for DirectRoute entity that will implement the
+ *        methods to find the relationship between Route and Station
  *
  */
 @Repository
-public interface DirectRouteRepository extends GraphRepository<DirectRoute>{
+public interface DirectRouteRepository extends GraphRepository<DirectRoute> {
 
 	public DirectRoute findById(Long id);
-	public DirectRoute findByfrom(Route from);
-	public DirectRoute findByTo(Station to);
+
 	public Stream<DirectRoute> findAllByFrom(Route from);
+
 	public Stream<DirectRoute> findAllByTo(Station to);
 }
